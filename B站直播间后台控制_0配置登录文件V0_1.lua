@@ -491,7 +491,7 @@ function script_description()
 <font color=yellow>!脚本路径中尽量不要有中文</font>\
 <font color=green size=4>请在认为完成全部操作后点击<font color="white" size=5>⟳</font>重新载入插件</font>\
 配置cookie：\
-！请看着脚本日志操作\
+<font color=yellow>！请看着脚本日志操作</font>\
 扫描配置cookie请 提前增加\
    脚本日志窗口 宽高\
 手动配置cookie请前往\
@@ -541,12 +541,14 @@ function script_properties()
         obs.obs_properties_add_text(setting_props, "cookie", "cookie", obs.OBS_TEXT_PASSWORD)
         obs.obs_properties_add_button(setting_props, "buildBliveSettingFile", "扫码/手动配置cookie", buildBliveSettingFile)
         obs.obs_properties_add_text(setting_props, "cookieInfo", "消息：", obs.OBS_TEXT_INFO)
-        local settingdevice = fun_NORMAL.showline(bilibili_cookie_Filepath, devicesline.setting)
-        local settingKey = { "cookie", 'bili_jct', 'DedeUserID', 'DedeUserID__ckMd5', 'Expires', 'SESSDATA', 'buvid3', "uname", "uid", "room_id" }
+        local settingdevice
+        local settingKey
         local function is_setting()
             if not fun_NORMAL.isCookie() then
                 return false
             end
+            settingdevice = fun_NORMAL.showline(bilibili_cookie_Filepath, devicesline.setting)
+            settingKey = { "cookie", 'bili_jct', 'DedeUserID', 'DedeUserID__ckMd5', 'Expires', 'SESSDATA', 'buvid3', "uname", "uid", "room_id" }
             for k, v in fun_NORMAL.list(settingKey) do
                 if not string.find(settingdevice, v) then
                     return false
@@ -565,7 +567,12 @@ function script_properties()
                 setCookieInfo(props, 'cookieInfo', connect, obs.OBS_TEXT_INFO_WARNING)
             end
         else
-            setCookieInfo(props, 'cookieInfo', '登录失败！请检查cookie或网络\n配置完成后重新载入脚本', obs.OBS_TEXT_INFO_WARNING)
+            local cookie_OpenR = io.open(bilibili_cookie_Filepath, "r")
+            if cookie_OpenR then
+                setCookieInfo(props, 'cookieInfo', '登录失败！请检查cookie或网络\n配置完成后重新载入脚本', obs.OBS_TEXT_INFO_WARNING)
+            else
+                setCookieInfo(props, 'cookieInfo', '未配置！请检查cookie或网络\n配置完成后重新载入脚本', obs.OBS_TEXT_INFO_WARNING)
+            end
         end
         return props
     end
