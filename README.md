@@ -1,0 +1,2 @@
+# OBSscript_BiliLiveCtrl
+OBS的控制B站直播的lua插件
