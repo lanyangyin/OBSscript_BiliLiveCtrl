@@ -537,7 +537,6 @@ function script_properties()
         setting_props = obs.obs_properties_create()
         --- ### 添加 配置项 分组框
         prop_group_setting = obs.obs_properties_add_group(props, 'group_setting', "配置项", obs.OBS_GROUP_NORMAL, setting_props)
-        obs.obs_properties_add_button(setting_props, "checkNeed", "自检所需python包", checkNeed)
         obs.obs_properties_add_text(setting_props, "cookie", "cookie", obs.OBS_TEXT_PASSWORD)
         obs.obs_properties_add_button(setting_props, "buildBliveSettingFile", "扫码/手动配置cookie", buildBliveSettingFile)
         obs.obs_properties_add_text(setting_props, "cookieInfo", "消息：", obs.OBS_TEXT_INFO)
@@ -579,40 +578,6 @@ function script_properties()
 end
 
 -- [[按钮事件]]
----自检所需python包
-function checkNeed(props, p)
-    local a = { op = 'o' }
-    local packages = NeedPythonPackages
-    NeedFull_is = true
-    for i, packageName in fun_NORMAL.list(packages) do
-        if os_name == 'Windows' then
-            local command = "python -c \"import " .. packageName .. "\" && echo 1 || echo 0"
-            --print(command)
-            local cmd = io.popen(command .. '')
-            local cmdRa = cmd:read('*a')
-            if cmdRa:gsub("^[\n%s]*(.-)[\n%s]*$", "%1") == '0' then
-                print('pip install ' .. packageName .. ' -i https://pypi.tuna.tsinghua.edu.cn/simple/')
-                NeedFull_is = false
-            end
-            cmd:close()
-        else
-            local command = "python3 -c \"import " .. packageName .. "\" && echo 1 || echo 0"
-            --print(command)
-            local cmd = io.popen(command .. '')
-            local cmdRa = cmd:read('*a')
-            if cmdRa:gsub("^[\n%s]*(.-)[\n%s]*$", "%1") == '0' then
-                print('pip3 install ' .. packageName .. ' -i https://pypi.tuna.tsinghua.edu.cn/simple/')
-                NeedFull_is = false
-            end
-            cmd:close()
-        end
-    end
-    if NeedFull_is then
-        print('所需python包完整')
-    else
-        print('所需python包不完整，请在终端执行指示的命令')
-    end
-end
 ---配置cookie
 function buildBliveSettingFile(props, p)
     local cookie = obs.obs_data_get_string(data, "cookie"):gsub("^[\n%s]*(.-)[\n%s]*$", "%1")
@@ -637,7 +602,7 @@ function buildBliveSettingFile(props, p)
             cookieKeynum = cookieKeynum + 1
         end
         if keyhavenum == cookieKeynum then
-            local bilibili_cookie_Filepath_openW = io.open(bilibili_cookie_Filepath, 'w')
+            bilibili_cookie_Filepath_openW = io.open(bilibili_cookie_Filepath, 'w')
             bilibili_cookie_Filepath_openW:write(cookie)
             bilibili_cookie_Filepath_openW:close()
         else

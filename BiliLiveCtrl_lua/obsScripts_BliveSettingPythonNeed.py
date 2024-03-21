@@ -1,10 +1,9 @@
 import json
 import os
 import sys
-
-# Python运行路径
 import time
 
+# Python运行路径
 os.path.abspath('.')
 
 # 当前脚本的路径
@@ -194,7 +193,8 @@ if model == 'updatacookie':
                     devices = firstinfo(headers)
     with open(os.path.dirname(os.path.abspath(__file__)) + '/BiliLiveCtrl_lua.temp', 'w',
               encoding='utf-8') as t:
-        t.write('')
+        t.write('配置完成')
+    time.sleep(1)
     with open(os.path.dirname(os.path.abspath(__file__)) + '/devices.json', 'w', encoding='utf-8') as t:
         l1, l2, l3, l4, l5 = devices
         t.write(json.dumps(l1, ensure_ascii=False) + "\n")
@@ -202,6 +202,9 @@ if model == 'updatacookie':
         t.write(json.dumps(l3, ensure_ascii=False) + "\n")
         t.write(json.dumps(l4, ensure_ascii=False) + "\n")
         t.write(json.dumps(l5, ensure_ascii=False) + "\n")
+    with open(os.path.dirname(os.path.abspath(__file__)) + '/BiliLiveCtrl_lua.temp', 'w',
+              encoding='utf-8') as t:
+        t.write('')
 
 if model == 'getuname':
     UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
