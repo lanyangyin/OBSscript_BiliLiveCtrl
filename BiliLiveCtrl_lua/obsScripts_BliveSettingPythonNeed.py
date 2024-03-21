@@ -192,6 +192,9 @@ if model == 'updatacookie':
                     cookie = BiliBili_api_limited.dict2cookieFormat(cookie_dict)
                     headers['cookie'] = cookie
                     devices = firstinfo(headers)
+    with open(os.path.dirname(os.path.abspath(__file__)) + '/BiliLiveCtrl_lua.temp', 'w',
+              encoding='utf-8') as t:
+        t.write('')
     with open(os.path.dirname(os.path.abspath(__file__)) + '/devices.json', 'w', encoding='utf-8') as t:
         l1, l2, l3, l4, l5 = devices
         t.write(json.dumps(l1, ensure_ascii=False) + "\n")

@@ -462,7 +462,8 @@ local obsScripts_BliveSettingPythonNeed_text = ''
 --- 设置默认值
 function script_defaults(settings)
     obs.obs_data_set_string(settings, "cookie", '')
-    if fun_NORMAL.isCookie() then
+    fun_NORMAL.BuildTemp() -- 加载插件时创建BliveCtrl文件夹和temp文件
+    if is_Cookie then
         local settingdevice = fun_NORMAL.showline(bilibili_cookie_Filepath, devicesline.setting)
         local settingdevicetable = fun_NORMAL.json2table(settingdevice)
         fun_NORMAL.writeTemp('{\"model\": \"updatacookie\", \"cookie\": \"' .. settingdevicetable.cookie .. '\"}')
@@ -511,7 +512,6 @@ end
 --- 一个名为script_load的函数将在启动时调用
 function script_load(settings)
     if os_name then
-        fun_NORMAL.BuildTemp() -- 加载插件时创建BliveCtrl文件夹和temp文件
         local tl = '已载入：' .. LuaSelf_Filepath:match("[^/]*$") .. '\n'
         data = settings
         print(tl)
@@ -544,6 +544,9 @@ function script_properties()
         local settingdevice = fun_NORMAL.showline(bilibili_cookie_Filepath, devicesline.setting)
         local settingKey = { "cookie", 'bili_jct', 'DedeUserID', 'DedeUserID__ckMd5', 'Expires', 'SESSDATA', 'buvid3', "uname", "uid", "room_id" }
         local function is_setting()
+            if not fun_NORMAL.isCookie() then
+                return false
+            end
             for k, v in fun_NORMAL.list(settingKey) do
                 if not string.find(settingdevice, v) then
                     return false
@@ -553,8 +556,14 @@ function script_properties()
         end
         if is_setting() then
             local settingdevicetable = fun_NORMAL.json2table(settingdevice)
-            local connect = settingdevicetable.uname .. '  好久不见！\n您的房间号为：' .. settingdevicetable.room_id
-            setCookieInfo(props, 'cookieInfo', connect, obs.OBS_TEXT_INFO_NORMAL)
+            local connect
+            if settingdevicetable.room_id ~= '0' then
+                connect = "Hi! " .. settingdevicetable.uname .. '\n您的房间号为：' .. settingdevicetable.room_id
+                setCookieInfo(props, 'cookieInfo', connect, obs.OBS_TEXT_INFO_NORMAL)
+            else
+                connect = "Hi! " .. settingdevicetable.uname .. '\n您未开通B站直播房间！'
+                setCookieInfo(props, 'cookieInfo', connect, obs.OBS_TEXT_INFO_WARNING)
+            end
         else
             setCookieInfo(props, 'cookieInfo', '登录失败！请检查cookie或网络\n配置完成后重新载入脚本', obs.OBS_TEXT_INFO_WARNING)
         end
