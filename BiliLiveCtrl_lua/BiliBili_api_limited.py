@@ -2339,11 +2339,4 @@ class BiliLiveApiNeedCookie:
         return deleteApp_audit_data
 
 
-headers = {
-    "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
-    "cookie": "buvid3=94C69A47-1598-8BBB-6303-BEDBB8591CFD47049infoc; b_nut=1713077647; _uuid=B82BFE7A-FF10E-BA64-A3109-A9FECB8DE58347092infoc; buvid4=7F24DD9D-86BF-6CF4-7022-293CED5BED8748390-024041406-sdKnSN59x4BTPH9pWZcWMg%3D%3D; enable_web_push=DISABLE; FEED_LIVE_VERSION=V_WATCHLATER_PIP_WINDOW3; header_theme_version=CLOSE; CURRENT_FNVAL=4048; rpdid=|(uulk))mJJ~0J'u~uJkukk|J; hit-dyn-v2=1; bp_video_offset_3546559824267399=921929753909264402; LIVE_BUVID=AUTO3417136285073488; buvid_fp_plain=undefined; DedeUserID=143474500; DedeUserID__ckMd5=7d59d5cc4d178400; home_feed_column=5; bp_video_offset_143474500=924422312395014147; browser_resolution=1872-932; fingerprint=c550c467e37c3a3cddf0e664ac9eacf6; bp_t_offset_143474500=926885738137518194; bili_ticket=eyJhbGciOiJIUzI1NiIsImtpZCI6InMwMyIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTQ5OTgyNDMsImlhdCI6MTcxNDczODk4MywicGx0IjotMX0.4Rd1XdF1a7JaBcSunHqSlTGg5yVnbsXdC-iBdTN4hL4; bili_ticket_expires=1714998183; SESSDATA=daf35c82%2C1730437179%2C1edb9%2A51CjBA_hSDRB2ofAgAp_5L8cRh8r2N_siRZG_3TzQWJdJEKZK2ZUM5VSOeuXVLca9Kv6QSVmcxU29WSnB1M2puSlpJWUlmUUFNZ3hZcE54dHVYMmZpOHdySjNXeFRCc2NIV0pfSTQyN1FFZDRvRmR5NFNsZ3F1NDRsWFFoUGprTWtHNF95WGVBcWtRIIEC; bili_jct=6a34e67214337fc58b8074f5b5e53b91; sid=fzuz9ped; PVID=3; buvid_fp=94C69A47-1598-8BBB-6303-BEDBB8591CFD47049infoc; b_lsid=A910E2510D_18F47A5E3D4",
-}
-test = BiliLiveApiNeedCookie(headers)
-dm = test.Danmu
-dm.websocket
 
