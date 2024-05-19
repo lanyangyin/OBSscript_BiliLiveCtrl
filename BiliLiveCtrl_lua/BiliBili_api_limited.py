@@ -2028,7 +2028,7 @@ class BiliLiveApiNeedCookie:
         """
         获得 经验值信息部分和B站直播间财产信息
         get_url：https://api.live.bilibili.com/xlive/web-ucenter/user/get_user_info
-        :return:
+        @return:
         <pre>{<br>&#32;&#32;"uid":&#32;int(B站uid),<br>&#32;&#32;"uname":&#32;str(B站昵称),<br>&#32;&#32;"face":&#32;str(头像url),<br>&#32;&#32;"billCoin":&#32;int(硬币数),<br>&#32;&#32;"silver":int(直播间银瓜子数),<br>&#32;&#32;"gold":&#32;int(直播间电池值：1人民币=&gt;10电池=&gt;1000电池值),<br>&#32;&#32;"achieve":int(成就值),<br>&#32;&#32;"vip":&#32;0,<br>&#32;&#32;"svip":&#32;0,<br>&#32;&#32;"user_level":&#32;int(B站用户等级),<br>&#32;&#32;"user_next_level":int(下一级B站用户等级),<br>&#32;&#32;"user_intimacy":int(当前B站用户等级经验值：1人民币=&gt;1000用户等级经验值),<br>&#32;&#32;"user_next_intimacy":int(当前B站用户等级经验值槽总量),<br>&#32;&#32;"is_level_top":&#32;0,<br>&#32;&#32;"user_level_rank":&#32;"&gt;50000：疑似当前B站用户等级经验值排名",<br>&#32;&#32;"user_charged":&#32;0,<br>&#32;&#32;"identification":&#32;1,<br>&#32;&#32;"wealth_info":&#32;{<br>&#32;&#32;&#32;&#32;"cur_score":int(当前直播间荣耀等级经验值),<br>&#32;&#32;&#32;&#32;"dm_icon_key":&#32;"",<br>&#32;&#32;&#32;&#32;"level":&#32;int(直播间荣耀等级),<br>&#32;&#32;&#32;&#32;"level_total_score":int(当前直播间荣耀等级经验值槽总量),<br>&#32;&#32;&#32;&#32;"status":&#32;int(直播间荣耀等级权益锁定状态:1=&gt;开启，2=&gt;锁定，0可能是未激活荣耀等级),<br>&#32;&#32;&#32;&#32;"uid":int(B站uid),<br>&#32;&#32;&#32;&#32;"upgrade_need_score":int(直播间荣耀等级进入下一级所需经验值：1人民币=&gt;1000直播间荣耀等级经验值)<br>&#32;&#32;}<br>}</pre>
         """
         url = f"https://api.live.bilibili.com/xlive/web-ucenter/user/get_user_info"
@@ -2339,4 +2339,11 @@ class BiliLiveApiNeedCookie:
         return deleteApp_audit_data
 
 
+headers = {
+    "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+    "cookie": "buvid3=94C69A47-1598-8BBB-6303-BEDBB8591CFD47049infoc; b_nut=1713077647; _uuid=B82BFE7A-FF10E-BA64-A3109-A9FECB8DE58347092infoc; buvid4=7F24DD9D-86BF-6CF4-7022-293CED5BED8748390-024041406-sdKnSN59x4BTPH9pWZcWMg%3D%3D; enable_web_push=DISABLE; FEED_LIVE_VERSION=V_WATCHLATER_PIP_WINDOW3; header_theme_version=CLOSE; CURRENT_FNVAL=4048; rpdid=|(uulk))mJJ~0J'u~uJkukk|J; hit-dyn-v2=1; bp_video_offset_3546559824267399=921929753909264402; LIVE_BUVID=AUTO3417136285073488; buvid_fp_plain=undefined; DedeUserID=143474500; DedeUserID__ckMd5=7d59d5cc4d178400; home_feed_column=5; bp_video_offset_143474500=924422312395014147; browser_resolution=1872-932; fingerprint=c550c467e37c3a3cddf0e664ac9eacf6; bp_t_offset_143474500=926885738137518194; bili_ticket=eyJhbGciOiJIUzI1NiIsImtpZCI6InMwMyIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTQ5OTgyNDMsImlhdCI6MTcxNDczODk4MywicGx0IjotMX0.4Rd1XdF1a7JaBcSunHqSlTGg5yVnbsXdC-iBdTN4hL4; bili_ticket_expires=1714998183; SESSDATA=daf35c82%2C1730437179%2C1edb9%2A51CjBA_hSDRB2ofAgAp_5L8cRh8r2N_siRZG_3TzQWJdJEKZK2ZUM5VSOeuXVLca9Kv6QSVmcxU29WSnB1M2puSlpJWUlmUUFNZ3hZcE54dHVYMmZpOHdySjNXeFRCc2NIV0pfSTQyN1FFZDRvRmR5NFNsZ3F1NDRsWFFoUGprTWtHNF95WGVBcWtRIIEC; bili_jct=6a34e67214337fc58b8074f5b5e53b91; sid=fzuz9ped; PVID=3; buvid_fp=94C69A47-1598-8BBB-6303-BEDBB8591CFD47049infoc; b_lsid=A910E2510D_18F47A5E3D4",
+}
+test = BiliLiveApiNeedCookie(headers)
+dm = test.Danmu
+dm.websocket
 
