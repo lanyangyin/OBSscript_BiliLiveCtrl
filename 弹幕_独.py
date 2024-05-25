@@ -203,8 +203,8 @@ class session:
     def starDanMu(self):
         asyncio.run(self.main())
 
-fd = Normal(headers, 1960179)
-print(fd.connect())
-wss_url, auth_body = fd.connect()
-danm = session(wss_url, auth_body)
-danm.starDanMu()
+# fd = Normal(headers, 1960179)
+# print(fd.connect())
+# wss_url, auth_body = fd.connect()
+# danm = session(wss_url, auth_body)
+# danm.starDanMu()
