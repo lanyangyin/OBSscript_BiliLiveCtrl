@@ -136,7 +136,7 @@ def qr_encode(qr_str: str, border: int = 2, invert: bool = False):
     img = qr.make_image()
     # 将 Pillow 图像对象保存到一个内存中的字节流 buf 中
     buf = io.BytesIO()
-    img.save(buf, format='PNG')
+    img.save(buf)
     image_stream = buf.getvalue()
     # 将其转换为 PNG 格式的二进制流
     heximage = base64.b64encode(image_stream)

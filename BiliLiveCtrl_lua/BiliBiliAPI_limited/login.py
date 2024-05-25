@@ -8,7 +8,7 @@ from typing import Dict, Any
 
 import requests
 
-from tool import urldata_dict
+from .tool import urldata_dict
 
 debug = False
 debug_num = 0

@@ -4078,7 +4078,7 @@ class master:
         return nav["data"]
 
 
-from tool import wbi
+from .tool import wbi
 class WbiSigna:
     def __init__(self, cookie: str,
                  UA: str = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0"):

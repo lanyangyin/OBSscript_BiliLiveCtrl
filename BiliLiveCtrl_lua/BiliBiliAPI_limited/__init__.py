@@ -1,7 +1,7 @@
 # coding=utf-8
-from tool import config_B, qr_encode, dict2cookieformat
-from login import generate, poll
-from special import master
+from .tool import config_B, qr_encode, dict2cookieformat
+from .login import generate, poll
+from .special import master
 
 
 def start_login(uid: int = 0):
@@ -43,7 +43,6 @@ def start_login(uid: int = 0):
     return dict2cookieformat(cookies)
 
 
-print(start_login())
 
 
 
