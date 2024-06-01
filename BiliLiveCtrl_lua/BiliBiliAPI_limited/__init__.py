@@ -4,13 +4,14 @@ from .login import generate, poll
 from .special import master
 
 
-def start_login(uid: int = 0):
+def start_login(uid: int = 0, dirname="Biliconfig"):
     """
     扫码登陆获得cookies
     :param uid:
+    :param dirname:
     :return:
     """
-    configb = config_B(uid=uid, dirname="Biliconfig")
+    configb = config_B(uid=uid, dirname=dirname)
     cookies = configb.check()
     islogin = master(dict2cookieformat(cookies)).interface_nav()["isLogin"]
     if islogin:
@@ -38,18 +39,6 @@ def start_login(uid: int = 0):
         configb.update(cookies)
     else:
         uid = int(cookies['DedeUserID'])
-        configb = config_B(uid=uid, dirname="Biliconfig")
+        configb = config_B(uid=uid, dirname=dirname)
         configb.update(cookies)
     return dict2cookieformat(cookies)
-
-
-
-
-
-
-
-
-
-
-
-
