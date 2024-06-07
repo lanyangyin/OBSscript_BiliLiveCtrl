@@ -86,7 +86,7 @@ class BiliLiveApiNeedCookie:
             async def on_open(self, ws):
                 print("Connected to server...")
                 await ws.send(self.pack(self.auth_body, 7))
-                asyncio.create_task(self.send_heartbeat(ws))
+                asyncio.create_task(self.send_heartbeat(ws)) # 这里不能加await
 
             async def send_heartbeat(self, ws):
                 while True:
@@ -120,7 +120,7 @@ class BiliLiveApiNeedCookie:
 
                 content = content_bytes.decode('utf-8')
                 if opt_code == 8:  # AUTH_REPLY
-                    print(f"Authentication Reply: {content}\n")
+                    print(f"身份验证回复: {content}\n")
                 elif opt_code == 5:  # SEND_SMS_REPLY
                     if content not in self.saved_danmudata:
                         self.saved_danmudata.add(content)
@@ -159,10 +159,11 @@ class BiliLiveApiNeedCookie:
 
 
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/58.0.3029.110 Safari/537.3',
     'cookie': start_login(3546559824267399)
 }
 BAC = BiliLiveApiNeedCookie(headers)
-dm_client = BAC.danmu.get_websocket_client(21756924)
+dm_client = BAC.danmu.get_websocket_client(3044248)
 
 asyncio.run(dm_client.main())
